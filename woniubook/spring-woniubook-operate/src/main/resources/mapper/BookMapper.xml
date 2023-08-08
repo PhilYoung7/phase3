@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.woniuxy.operate.mapper.BookMapper">
+
+    <resultMap id="bookmap" type="Book" autoMapping="true">
+    </resultMap>
+    <select id="find2Page2" resultMap="bookmap">
+        select * from book
+        <where>
+            1=1
+            <if test="b.author != null and b.author != ''">
+                and author like concat(#{b.author},'%')
+            </if>
+            <if test="b.title != null and b.title != ''">
+                and title like concat(#{b.title},'%')
+            </if>
+        </where>
+    </select>
+
+</mapper>
